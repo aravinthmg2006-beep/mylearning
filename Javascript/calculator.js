@@ -4,17 +4,16 @@ const min = -2147483648;
 let currentResult = 0;
 
 
-// Check whether a number is within 32-bit integer range
+
 function isOutOfRange(value) {
     return value < min || value > max;
 }
 
 
-// ADD
+
 function add(a, b) {
 
-    // If only one argument is given,
-    // use the current result
+    
     if (b === undefined) {
         b = a;
         a = currentResult;
@@ -35,7 +34,7 @@ function add(a, b) {
 }
 
 
-// SUBTRACT
+
 function subtract(a, b) {
 
     if (b === undefined) {
@@ -58,7 +57,7 @@ function subtract(a, b) {
 }
 
 
-// MULTIPLY
+
 function multiply(a, b) {
 
     if (b === undefined) {
@@ -81,7 +80,7 @@ function multiply(a, b) {
 }
 
 
-// DIVIDE
+
 function divide(a, b) {
 
     if (b === undefined) {
@@ -108,7 +107,7 @@ function divide(a, b) {
 }
 
 
-// POWER
+
 function power_of(a, b) {
 
     if (isOutOfRange(a,b) ) {
@@ -126,12 +125,11 @@ function power_of(a, b) {
 }
 
 
-// TESTING
 
-console.log(add(1, 2));        // 3
-console.log(subtract(4, 2));   // 2
-console.log(add(3));           // 3
-console.log(multiply(4));      // 12
-console.log(divide(10, 5));    // 2
-console.log(divide(0));        // cannot divide
-console.log(add(1, 10));       // 11
+console.log(add(1, 2));        
+console.log(subtract(4, 2));   
+console.log(add(3));           
+console.log(multiply(4));     
+console.log(divide(10, 5));  
+console.log(divide(0));        
+console.log(add(1, 10));       
