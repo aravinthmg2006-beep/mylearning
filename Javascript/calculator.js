@@ -20,7 +20,7 @@ function add(a, b) {
         a = currentResult;
     }
 
-    if (isOutOfRange(a) || isOutOfRange(b)) {
+    if (isOutOfRange(a,b) ) {
         return "out of range";
     }
 
@@ -43,7 +43,7 @@ function subtract(a, b) {
         a = currentResult;
     }
 
-    if (isOutOfRange(a) || isOutOfRange(b)) {
+    if (isOutOfRange(a,b) ) {
         return "out of range";
     }
 
@@ -66,7 +66,7 @@ function multiply(a, b) {
         a = currentResult;
     }
 
-    if (isOutOfRange(a) || isOutOfRange(b)) {
+    if (isOutOfRange(a,b) ) {
         return "out of range";
     }
 
@@ -93,7 +93,7 @@ function divide(a, b) {
         return "cannot divide";
     }
 
-    if (isOutOfRange(a) || isOutOfRange(b)) {
+    if (isOutOfRange(a,b) ) {
         return "out of range";
     }
 
@@ -111,7 +111,7 @@ function divide(a, b) {
 // POWER
 function power_of(a, b) {
 
-    if (isOutOfRange(a) || isOutOfRange(b)) {
+    if (isOutOfRange(a,b) ) {
         return "out of range";
     }
 
@@ -130,7 +130,7 @@ function power_of(a, b) {
 
 console.log(add(1, 2));        // 3
 console.log(subtract(4, 2));   // 2
-console.log(add(1));           // 3
+console.log(add(3));           // 3
 console.log(multiply(4));      // 12
 console.log(divide(10, 5));    // 2
 console.log(divide(0));        // cannot divide
