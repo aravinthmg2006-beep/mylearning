@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Functions</h1>
+<h1>The bind() Method</h1>
+
+<p id="demo"></p>
+
+<script>
+const person1 = { name: "John" };
+const person2 = { name: "Paul" };
+const person3 = { name: "Ringo" };
+
+function greet() {
+  return "Hello " + this.name;
+}
+
+const greetPaul = greet.bind(person2);
+
+document.getElementById("demo").innerHTML = greetPaul();
+</script>
+
+</body>
+</html>
