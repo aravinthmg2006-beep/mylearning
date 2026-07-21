@@ -8,17 +8,21 @@
     <title>8 x 8 Grid</title>
 
     <style>
+
+        /* Remove default browser spacing */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Make the body full screen */
         body {
             width: 100vw;
             height: 100vh;
         }
 
+        /* Create the 8 x 8 grid */
         .grid {
             width: 100vw;
             height: 100vh;
@@ -29,51 +33,73 @@
             grid-template-rows: repeat(8, 1fr);
         }
 
+        /* Style each grid cell */
         .box {
             border: 1px solid black;
         }
 
+        /* Black color */
         .active {
             background-color: black;
         }
+
     </style>
 </head>
 
 <body>
 
+    <!-- Empty grid container -->
     <div class="grid" id="grid"></div>
+
 
     <script>
 
+        // Select the grid
         const grid = document.getElementById("grid");
+
 
         // Create 64 boxes
         for (let i = 0; i < 64; i++) {
 
+
+            // Create one div
             const box = document.createElement("div");
 
+
+            // Add the "box" class
             box.classList.add("box");
 
-            // First box is initially black
+
+            // Make the first box black
             if (i === 0) {
                 box.classList.add("active");
             }
 
-            // When we click a box
-            box.addEventListener("click", function () {
 
-                // Remove black color from all boxes
+            // When the cursor enters a box
+            box.addEventListener("mouseenter", function () {
+
+
+                // Find all boxes
                 document.querySelectorAll(".box").forEach(function (box) {
+
+
+                    // Remove black color
                     box.classList.remove("active");
+
                 });
 
-                // Add black color to clicked box
+
+                // Add black color to the box
+                // where the cursor is currently located
                 this.classList.add("active");
 
             });
 
-            // Add box to grid
+
+            // Add the box to the grid
             grid.appendChild(box);
+
         }
 
     </script>
