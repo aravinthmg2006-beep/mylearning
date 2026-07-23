@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Management System</h1>
+
+    <h2>Add Student</h2>
+
+    <input type="number" id="studentId" placeholder="ID">
+    <input type="text" id="studentName" placeholder="Name">
+    <input type="number" id="studentAge" placeholder="Age">
+    <input type="text" id="studentCourse" placeholder="Course">
+
+    <br>
+
+    <input type="number" id="mathematics" placeholder="Mathematics">
+    <input type="number" id="physics" placeholder="Physics">
+    <input type="number" id="chemistry" placeholder="Chemistry">
+    <input type="number" id="programming" placeholder="Programming">
+    <input type="number" id="english" placeholder="English">
+    <input type="number" id="engineeringDrawing" placeholder="Engineering Drawing">
+    <input type="number" id="communicationSkills" placeholder="Communication Skills">
+
+    <br>
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <hr>
+
+    <h2>Search / Delete Student</h2>
+
+    <input type="text" id="searchInput"
+        placeholder="Search by ID, Name, Age, or Course">
+
+    <button onclick="searchStudent()">Search</button>
+    <button onclick="deleteStudent()">Delete</button>
+    <button onclick="displayStudents(students)">Show All</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th>Mathematics</th>
+                <th>Physics</th>
+                <th>Chemistry</th>
+                <th>Programming</th>
+                <th>English</th>
+                <th>Engineering Drawing</th>
+                <th>Communication Skills</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentTable"></tbody>
+    </table>
+
+    <script>
+
+        const students = [
+            {
+                id: 1,
+                name: "Eswar",
+                age: 21,
+                course: "Computer Science",
+                marks: {
+                    mathematics: 85,
+                    physics: 78,
+                    chemistry: 82,
+                    programming: 90,
+                    english: 88,
+                    engineeringDrawing: 75,
+                    communicationSkills: 80
+                }
+            },
+            {
+                id: 2,
+                name: "Arun",
+                age: 22,
+                course: "Information Technology",
+                marks: {
+                    mathematics: 90,
+                    physics: 82,
+                    chemistry: 76,
+                    programming: 85,
+                    english: 79,
+                    engineeringDrawing: 88,
+                    communicationSkills: 84
+                }
+            },
+            {
+                id: 3,
+                name: "Karthik",
+                age: 21,
+                course: "Computer Science",
+                marks: {
+                    mathematics: 78,
+                    physics: 85,
+                    chemistry: 80,
+                    programming: 92,
+                    english: 86,
+                    engineeringDrawing: 81,
+                    communicationSkills: 89
+                }
+            },
+            {
+                id: 4,
+                name: "Rahul",
+                age: 22,
+                course: "Mechanical",
+                marks: {
+                    mathematics: 82,
+                    physics: 88,
+                    chemistry: 75,
+                    programming: 70,
+                    english: 80,
+                    engineeringDrawing: 95,
+                    communicationSkills: 78
+                }
+            },
+            {
+                id: 5,
+                name: "Vijay",
+                age: 20,
+                course: "Civil",
+                marks: {
+                    mathematics: 88,
+                    physics: 80,
+                    chemistry: 85,
+                    programming: 74,
+                    english: 82,
+                    engineeringDrawing: 90,
+                    communicationSkills: 86
+                }
+            },
+            {
+                id: 6,
+                name: "David",
+                age: 21,
+                course: "Electronics",
+                marks: {
+                    mathematics: 91,
+                    physics: 89,
+                    chemistry: 78,
+                    programming: 88,
+                    english: 85,
+                    engineeringDrawing: 76,
+                    communicationSkills: 90
+                }
+            },
+            {
+                id: 7,
+                name: "Prakash",
+                age: 22,
+                course: "Computer Science",
+                marks: {
+                    mathematics: 86,
+                    physics: 84,
+                    chemistry: 81,
+                    programming: 95,
+                    english: 88,
+                    engineeringDrawing: 79,
+                    communicationSkills: 92
+                }
+            },
+            {
+                id: 8,
+                name: "Suresh",
+                age: 20,
+                course: "Information Technology",
+                marks: {
+                    mathematics: 75,
+                    physics: 79,
+                    chemistry: 83,
+                    programming: 87,
+                    english: 81,
+                    engineeringDrawing: 85,
+                    communicationSkills: 25
+                }
+            },
+            {
+                id: 9,
+                name: "Ajay",
+                age: 21,
+                course: "Mechanical",
+                marks: {
+                    mathematics: 84,
+                    physics: 90,
+                    chemistry: 77,
+                    programming: 72,
+                    english: 23,
+                    engineeringDrawing: 93,
+                    communicationSkills: 82
+                }
+            },
+            {
+                id: 10,
+                name: "Mohan",
+                age: 22,
+                course: "Civil",
+                marks: {
+                    mathematics: 32,
+                    physics: 83,
+                    chemistry: 86,
+                    programming: 78,
+                    english: 84,
+                    engineeringDrawing: 91,
+                    communicationSkills: 88
+                }
+            }
+        ];
+
+        const table = document.getElementById("studentTable");
+
+        const subjects = [
+            "mathematics",
+            "physics",
+            "chemistry",
+            "programming",
+            "english",
+            "engineeringDrawing",
+            "communicationSkills"
+        ];
+
+        function displayStudents(list) {
+            table.innerHTML = "";
+
+            list.forEach(student => {
+                let marks = student.marks;
+                let total = 0;
+
+                subjects.forEach(subject => {
+                    total += marks[subject];
+                });
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${student.id}</td>
+                        <td>${student.name}</td>
+                        <td>${student.age}</td>
+                        <td>${student.course}</td>
+                        <td>${marks.mathematics}</td>
+                        <td>${marks.physics}</td>
+                        <td>${marks.chemistry}</td>
+                        <td>${marks.programming}</td>
+                        <td>${marks.english}</td>
+                        <td>${marks.engineeringDrawing}</td>
+                        <td>${marks.communicationSkills}</td>
+                        <td>${total}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function calculateResults() {
+            let passCount = 0;
+            let failCount = 0;
+
+            let subjectTotals = {};
+            let subjectCounts = {};
+
+            subjects.forEach(subject => {
+                subjectTotals[subject] = 0;
+                subjectCounts[subject] = 0;
+            });
+
+            let results = [];
+
+            students.forEach(student => {
+                let failedSubjects = [];
+                let total = 0;
+
+                subjects.forEach(subject => {
+                    let mark = student.marks[subject];
+
+                    total += mark;
+
+                    if (mark >= 35) {
+                        subjectTotals[subject] += mark;
+                        subjectCounts[subject]++;
+                    } else {
+                        failedSubjects.push(subject);
+
+                        console.log(
+                            student.name,
+                            "failed in",
+                            subject,
+                            "with",
+                            mark
+                        );
+                    }
+                });
+
+                let average = total / subjects.length;
+
+                let result = "Pass";
+
+                if (failedSubjects.length > 0) {
+                    result = "Fail";
+                    failCount++;
+                } else {
+                    passCount++;
+                }
+
+                results.push({
+                    name: student.name,
+                    total: total,
+                    average: average,
+                    result: result
+                });
+            });
+
+            console.log("\nSUBJECT AVERAGES");
+
+            subjects.forEach(subject => {
+                let average =
+                    subjectTotals[subject] /
+                    subjectCounts[subject];
+
+                console.log(
+                    subject,
+                    "Average:",
+                    average.toFixed(2)
+                );
+            });
+
+            let passPercentage =
+                (passCount / students.length) * 100;
+
+            let failPercentage =
+                (failCount / students.length) * 100;
+
+            console.log(
+                "Pass Percentage:",
+                passPercentage.toFixed(2) + "%"
+            );
+
+            console.log(
+                "Fail Percentage:",
+                failPercentage.toFixed(2) + "%"
+            );
+
+            results.sort((a, b) => b.total - a.total);
+
+            console.log("\nTOP 3 STUDENTS");
+
+            results.slice(0, 3).forEach((student, index) => {
+                console.log(
+                    index + 1,
+                    student.name,
+                    "- Total:",
+                    student.total,
+                    "- Average:",
+                    student.average.toFixed(2),
+                    "- Result:",
+                    student.result
+                );
+            });
+        }
+
+        function addStudent() {
+            let newStudent = {
+                id: Number(document.getElementById("studentId").value),
+                name: document.getElementById("studentName").value,
+                age: Number(document.getElementById("studentAge").value),
+                course: document.getElementById("studentCourse").value,
+
+                marks: {
+                    mathematics: Number(document.getElementById("mathematics").value),
+                    physics: Number(document.getElementById("physics").value),
+                    chemistry: Number(document.getElementById("chemistry").value),
+                    programming: Number(document.getElementById("programming").value),
+                    english: Number(document.getElementById("english").value),
+                    engineeringDrawing: Number(document.getElementById("engineeringDrawing").value),
+                    communicationSkills: Number(document.getElementById("communicationSkills").value)
+                }
+            };
+
+            students.push(newStudent);
+
+            displayStudents(students);
+            calculateResults();
+
+            document.querySelectorAll("input").forEach(input => {
+                input.value = "";
+            });
+        }
+
+        function searchStudent() {
+            let searchText =
+                document.getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            let result = students.filter(student => {
+                return (
+                    student.id.toString().includes(searchText) ||
+                    student.name.toLowerCase().includes(searchText) ||
+                    student.age.toString().includes(searchText) ||
+                    student.course.toLowerCase().includes(searchText)
+                );
+            });
+
+            displayStudents(result);
+        }
+
+        function deleteStudent() {
+            let searchText =
+                document.getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            for (let i = students.length - 1; i >= 0; i--) {
+                let student = students[i];
+
+                if (
+                    student.id.toString().includes(searchText) ||
+                    student.name.toLowerCase().includes(searchText) ||
+                    student.age.toString().includes(searchText) ||
+                    student.course.toLowerCase().includes(searchText)
+                ) {
+                    students.splice(i, 1);
+                }
+            }
+
+            displayStudents(students);
+            calculateResults();
+
+            document.getElementById("searchInput").value = "";
+        }
+
+        displayStudents(students);
+        calculateResults();
+
+    </script>
+
+</body>
+
+</html>
