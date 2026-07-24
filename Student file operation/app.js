@@ -1,3 +1,130 @@
+
+const fs = require("fs");
+
+fs.readFile("student.csv", "utf8", (err, data) => {
+
+    if (err) {
+        console.log("Error reading student.csv");
+        return;
+    }
+
+    const rows = data.trim().split("\n");
+    const students = [];
+
+    // Convert CSV data into student objects
+    for (let i = 1; i < rows.length; i++) {
+
+        const values = rows[i].split(",");
+
+        students.push({
+            id: Number(values[0]),
+            name: values[1],
+            age: Number(values[2]),
+            course: values[3],
+
+            mathematics: Number(values[4]),
+            physics: Number(values[5]),
+            chemistry: Number(values[6]),
+            programming: Number(values[7]),
+            english: Number(values[8]),
+            engineeringDrawing: Number(values[9]),
+            communicationSkills: Number(values[10])
+        });
+    }
+
+    const results = [];
+
+    // Calculate total, average and failed subjects
+    for (let student of students) {
+
+        const subjects = {
+            Mathematics: student.mathematics,
+            Physics: student.physics,
+            Chemistry: student.chemistry,
+            Programming: student.programming,
+            English: student.english,
+            EngineeringDrawing: student.engineeringDrawing,
+            CommunicationSkills: student.communicationSkills
+        };
+
+        let total = 0;
+        let failedSubjects = [];
+
+        for (let subject in subjects) {
+
+            const mark = subjects[subject];
+
+            total += mark;
+
+            if (mark < 40) {
+                failedSubjects.push(subject);
+            }
+        }
+
+        const average = total / 7;
+
+        results.push({
+            name: student.name,
+            total: total,
+            average: average,
+            failedSubjects: failedSubjects
+        });
+    }
+
+    // Print every student's details
+    console.log("========== ALL STUDENTS ==========\n");
+
+    for (let student of results) {
+
+        console.log("Name:", student.name);
+        console.log("Total Marks:", student.total);
+        console.log("Average:", student.average.toFixed(2));
+
+        if (student.failedSubjects.length > 0) {
+            console.log(
+                "Failed Subjects:",
+                student.failedSubjects.join(", ")
+            );
+        }
+
+        console.log("------------------------------");
+    }
+
+    // Only students who passed all subjects can be toppers
+    const toppers = results.filter(student => {
+        return student.failedSubjects.length === 0;
+    });
+
+    // Sort students from highest total to lowest total
+    toppers.sort((a, b) => b.total - a.total);
+
+    // Display the top three students
+    console.log("\n========== TOP 3 TOPPERS ==========\n");
+
+    const topThree = toppers.slice(0, 3);
+
+    for (let i = 0; i < topThree.length; i++) {
+
+        console.log(`${i + 1}. ${topThree[i].name}`);
+        console.log("Total Marks:", topThree[i].total);
+        console.log("Average:", topThree[i].average.toFixed(2));
+
+        console.log("------------------------------");
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
 //This can be access from student 
 
 // const students = require("./students");
