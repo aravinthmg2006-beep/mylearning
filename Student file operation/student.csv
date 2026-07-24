@@ -1,0 +1,12 @@
+
+id,name,age,course,mathematics,physics,chemistry,programming,english,engineeringDrawing,communicationSkills
+1,Eswar,21,Computer Science,85,78,82,90,88,75,80
+2,Arun,22,Information Technology,90,82,6,85,79,88,84
+3,Karthik,21,Computer Science,78,85,80,92,86,81,89
+4,Rahul,22,Mechanical,82,88,75,30,80,95,78
+5,Vijay,20,Civil,88,80,85,74,82,20,86
+6,David,21,Electronics,91,89,78,88,85,76,90
+7,Prakash,22,Computer Science,86,84,11,95,88,79,92
+8,Suresh,20,Information Technology,75,79,83,87,81,85,80
+9,Ajay,21,Mechanical,84,90,77,72,86,93,82
+10,Mohan,22,Civil,89,83,86,78,84,91,88
